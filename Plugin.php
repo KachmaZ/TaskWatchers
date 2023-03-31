@@ -5,11 +5,13 @@ namespace Kanboard\Plugin\TaskWatchers;
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
 
+use Kanboard\Plugin\TaskWatchers\Action\TestAction;
+
 class Plugin extends Base
 {
     public function initialize()
     {
-        $this->template->hook->attach('template:task:sidebar', 'taskWatchers:task/smth');
+        $this->actionManager->register(new TestAction($this->container));
     }
 
     public function onStartup()
